@@ -14,13 +14,13 @@ end
 
 user_cart = user.create_cart
 
-# 20.times do |n|
-#   Item.create do |i|
-#     i.name = Faker::Food.dish
-#     i.description = Faker::Food.description
-#     i.amount = (5..20).to_a.sample
-#   end
-# end
+20.times do |n|
+  Item.create do |i|
+    i.name = Faker::Food.dish
+    i.description = Faker::Food.description
+    i.amount = (5..20).to_a.sample
+  end
+end
 
 3.times do |n|
   user_cart.cart_items.create(item: Item.all.sample, quantity: 1)
