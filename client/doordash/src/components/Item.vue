@@ -4,7 +4,7 @@
       <b>{{item.name}}</b>
       <span style="float:right"><b>${{item.amount}}</b></span>
     </div>
-    <div>{{item.description}}</div>
+    <div class="has-text-grey-light">{{item.abbrDescription}}</div>
   </div>
 </template>
 
@@ -19,6 +19,6 @@
   .items{
     padding: 10px;
     margin-bottom: 20px;
-    max-width: 300px;
+    max-width: 400px;
   }
 </style>
