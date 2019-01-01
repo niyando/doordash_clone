@@ -20,6 +20,13 @@ module Types
     def item(args)
       Item.find(args[:id])
     end
+
+    field :current_user, UserType, null: true do
+      "gets the logged in user"
+    end
+    def current_user
+      context[:current_user]
+    end
     
   end
 end
