@@ -9,6 +9,8 @@ import VueApollo from 'vue-apollo'
 import App from './App'
 import router from './router'
 
+import 'bulma/css/bulma.css'
+
 Vue.config.productionTip = false
 
 const httpLink = new HttpLink({
