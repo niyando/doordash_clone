@@ -27,6 +27,19 @@ module Types
     def current_user
       context[:current_user]
     end
+
+    field :cart_items, [CartItemType], null: true do
+      "gets all item in the cart of logged in user"
+    end
+    def cart_items
+      user = context[:current_user] || User.first
+      cart_items = []
+      if user
+        cart = user.cart || user.create_cart
+        cart_items = cart.cart_items
+      end
+      cart_items
+    end
     
   end
 end
