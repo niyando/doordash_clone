@@ -1,17 +1,21 @@
 <template>
-  <div>
-    <h4>Login</h4>
+  <div class="login-container">
+
     <form @submit.prevent="login">
-      <label for="email" >E-Mail Address</label>
-      <div>
-        <input id="email" type="email" class="input" v-model="email" required autofocus>
+      <div class="field">
+        <label for="email" >E-Mail Address</label>
+        <div class="control">
+          <input id="email" type="email" class="input" v-model="email" required autofocus>
+        </div>
       </div>
-      <div>
+      
+      <div class="field">
         <label for="password" >Password</label>
-        <div>
+        <div class="control">
             <input id="password" type="password" class="input" v-model="password" required>
         </div>
       </div>
+
       <div>
         <button class="button" type="submit">
             Login
@@ -60,3 +64,10 @@
       }
   }
 </script>
+
+<style scoped>
+  .login-container{
+    margin: 30px;
+    max-width: 500px;
+  }
+</style>

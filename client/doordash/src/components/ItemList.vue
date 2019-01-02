@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="items-container">
     <h4 v-if="loading">Loading...</h4>
     <item
       v-for="i in items"
@@ -31,3 +31,9 @@
     }
   }
 </script>
+
+<style scoped>
+  .items-container{
+    margin: 30px;
+  }
+</style>
