@@ -36,6 +36,7 @@
             localStorage.setItem(APP_USER_ID, id)
             localStorage.setItem(APP_AUTH_TOKEN, token)
             this.$root.$data.userId = localStorage.getItem(APP_USER_ID)
+            console.log(this.$root.$data.userId)
           },
           login(){
             const { email, password } = this.$data
@@ -50,7 +51,7 @@
                 const id = result.data.authUser.user.id
                 const token = result.data.authUser.user.authToken
                 this.saveUserData(id, token)
-                this.$router.push('/')
+                this.$router.push({name: 'items'})
               }else{
                 alert(result.data.authUser.errors[0])
               }

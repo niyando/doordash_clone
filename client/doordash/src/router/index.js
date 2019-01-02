@@ -5,18 +5,20 @@ import ItemList from '@/components/ItemList'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 
+import { APP_AUTH_TOKEN } from '../constants/settings'
+
 Vue.use(Router)
 
 let router =  new Router({
   routes: [
     {
       path: '/',
-      name: 'ItemList',
+      name: 'items',
       component: ItemList
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login,
       meta: {
         guestOnly: true
@@ -24,7 +26,7 @@ let router =  new Router({
     },
     {
       path: '/register',
-      name: 'Register',
+      name: 'register',
       component: Register,
       meta: {
         guestOnly: true
@@ -36,13 +38,13 @@ let router =  new Router({
 
 router.beforeEach((to, from, next) => {
   if(to.matched.some(record => record.meta.requiresAuth)) {
-      if (localStorage.getItem('app-auth-token') == null) {
+      if (localStorage.getItem(APP_AUTH_TOKEN) == null) {
         next({path: '/login'})
       } else {
         next()
       }
   } else if(to.matched.some(record => record.meta.guestOnly)) {
-      if(localStorage.getItem('app-auth-token') == null){
+      if(localStorage.getItem(APP_AUTH_TOKEN) == null){
         next()
       }
       else{

@@ -11,11 +11,38 @@
         <span aria-hidden="true"></span>
       </a>
     </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a v-if="userId" class="button is-light" @click="logout()">Logout</a>
+            <router-link v-else to="/login" class="button is-primary">Login</router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </nav>
 </template>
 
 <script>
+  import { APP_USER_ID, APP_AUTH_TOKEN } from '../constants/settings'
+
   export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
+    computed: {
+      userId () {
+        return this.$root.$data.userId
+      }
+    },
+    methods: {
+      logout () {
+        localStorage.removeItem(APP_USER_ID)
+        localStorage.removeItem(APP_AUTH_TOKEN)
+        this.$root.$data.userId = localStorage.getItem(APP_USER_ID)
+        this.$router.push({name: 'login'})
+      }
+    }
   }
 </script>

@@ -11,6 +11,9 @@ import router from './router'
 
 import 'bulma/css/bulma.css'
 
+import { APP_USER_ID } from './constants/settings'
+let userId = localStorage.getItem(APP_USER_ID)
+
 Vue.config.productionTip = false
 
 const httpLink = new HttpLink({
@@ -38,5 +41,8 @@ new Vue({
   el: '#app',
   provide: apolloProvider.provide(),
   router,
+  data: {
+    userId
+  },
   render: h => h(App)
 })
