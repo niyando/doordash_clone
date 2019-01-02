@@ -7,7 +7,7 @@ import Register from '@/components/Register'
 
 Vue.use(Router)
 
-export default new Router({
+let router =  new Router({
   routes: [
     {
       path: '/',
@@ -17,13 +17,40 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      meta: {
+        guestOnly: true
+      }
     },
     {
       path: '/register',
       name: 'Register',
-      component: Register
+      component: Register,
+      meta: {
+        guestOnly: true
+      }
     }
   ],
   mode: 'history'
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+      if (localStorage.getItem('app-auth-token') == null) {
+        next({path: '/login'})
+      } else {
+        next()
+      }
+  } else if(to.matched.some(record => record.meta.guestOnly)) {
+      if(localStorage.getItem('app-auth-token') == null){
+        next()
+      }
+      else{
+        next({path: '/'})
+      }
+  }else {
+    next() 
+  }
+})
+
+export default router
