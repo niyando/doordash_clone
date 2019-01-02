@@ -22,6 +22,10 @@
         </button>
       </div>
     </form>
+    <br>
+    <div class="">
+      <router-link to="/register" class="">New User? Register</router-link>
+    </div>
   </div>
 </template>
 
@@ -29,6 +33,7 @@
   import { APP_USER_ID, APP_AUTH_TOKEN } from '../constants/settings'
   import { LOGIN_MUTATION } from '../constants/graphql'
   export default {
+      name: 'Login',
       data(){
           return {
               email : "",

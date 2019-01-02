@@ -24,3 +24,16 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `
+
+export const REGISTER_MUTATION = gql`
+  mutation RegisterMutation($name: String!, $email: String!, $password: String!, $password_confirmation: String!){
+    createUser(name: $name, email: $email, password: $password, passwordConfirmation: $password_confirmation){
+    user{
+      id
+      name
+      authToken
+      }
+      errors
+    }
+  }
+`
