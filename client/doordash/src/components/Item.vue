@@ -5,7 +5,7 @@
       <div class="column"><b>${{item.amount}}</b></div>
     </div>
     <div class="has-text-grey-light">{{item.abbrDescription}}</div>
-    <button @click="addToCart(item.id)" class="button add-to-cart">Add to Cart</button>
+    <button @click="addToCart(item.id)" class="button is-primary add-to-cart">Add to Cart</button>
   </div>
 </template>
 

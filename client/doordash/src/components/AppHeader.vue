@@ -17,7 +17,7 @@
         <div class="navbar-item">
           <div class="buttons">
             <a v-if="userId" class="button is-light" @click="logout()">Logout</a>
-            <router-link v-else to="/login" class="button is-primary">Login</router-link>
+            <router-link v-if="!userId && showHeaderMenu" to="/login" class="button is-primary">Login</router-link>
           </div>
         </div>
       </div>
@@ -34,6 +34,9 @@
     computed: {
       userId () {
         return this.$root.$data.userId
+      },
+      showHeaderMenu () {
+        return this.$route.name !== 'login'
       }
     },
     methods: {
