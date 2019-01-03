@@ -1,17 +1,31 @@
 <template>
   <div class="items">
-    <div>
-      <b>{{item.name}}</b>
-      <span style="float:right"><b>${{item.amount}}</b></span>
+    <div class="columns">
+      <div class="column is-three-quarters"><b>{{item.name}}</b></div>
+      <div class="column"><b>${{item.amount}}</b></div>
     </div>
     <div class="has-text-grey-light">{{item.abbrDescription}}</div>
+    <button @click="addToCart(item.id)" class="button add-to-cart">Add to Cart</button>
   </div>
 </template>
 
 <script>
+  import { ADD_TO_CART_MUTATION } from '../constants/graphql'
+
   export default {
     name: 'Item',
-    props: ['item']
+    props: ['item'],
+    methods: {
+      addToCart(id){
+        const item_id = parseInt(id) 
+        this.$apollo.mutate({
+          mutation: ADD_TO_CART_MUTATION,
+          variables: {
+            item_id
+          }
+        }).then(function(){alert('item')})
+      }
+    }
   }
 </script>
 
@@ -20,5 +34,8 @@
     padding: 10px;
     margin-bottom: 20px;
     max-width: 400px;
+  }
+  .add-to-cart{
+    margin-top: 10px;
   }
 </style>
