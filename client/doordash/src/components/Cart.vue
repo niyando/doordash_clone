@@ -30,7 +30,7 @@
     },
     computed: {
       totalItems: function(){
-        return this.cartItems.length
+        return this.cartItems && this.cartItems.length
       }
     },
     apollo: {

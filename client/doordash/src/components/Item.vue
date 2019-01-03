@@ -16,8 +16,17 @@
   export default {
     name: 'Item',
     props: ['item'],
+    computed: {
+      userId () {
+        return this.$root.$data.userId
+      }
+    },
     methods: {
       addToCart(id){
+        if(!this.userId){
+          this.$router.push({name: 'login'})
+          return false;
+        }
         const item_id = parseInt(id) 
         this.$apollo.mutate({
           mutation: ADD_TO_CART_MUTATION,
