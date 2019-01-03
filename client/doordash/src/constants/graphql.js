@@ -55,7 +55,8 @@ export const CART_ITEMS_QUERY = gql`
 export const ADD_TO_CART_MUTATION = gql`
   mutation AddToCart($item_id: Int!) {
     addToCart(itemId: $item_id){
-      cartItem{
+      cartItems{
+        id
         item{
           id
           name
@@ -71,7 +72,8 @@ export const ADD_TO_CART_MUTATION = gql`
 export const REMOVE_FROM_CART_MUTATION = gql`
   mutation RemoveFromCart($item_id: Int!) {
     removeFromCart(itemId: $item_id){
-      cartItem{
+      cartItems{
+        id
         item{
           id
           name

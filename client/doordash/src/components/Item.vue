@@ -11,6 +11,7 @@
 
 <script>
   import { ADD_TO_CART_MUTATION } from '../constants/graphql'
+  import { CART_ITEMS_QUERY } from '../constants/graphql'
 
   export default {
     name: 'Item',
@@ -22,8 +23,13 @@
           mutation: ADD_TO_CART_MUTATION,
           variables: {
             item_id
+          },
+          update: (store, { data: { addToCart: {cartItems } } }) => {
+            const data = store.readQuery({ query: CART_ITEMS_QUERY })
+            data.cartItems = cartItems
+            store.writeQuery({ query: CART_ITEMS_QUERY, data })
           }
-        }).then(function(){alert('item added')})
+        })
       }
     }
   }

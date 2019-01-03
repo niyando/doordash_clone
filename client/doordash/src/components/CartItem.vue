@@ -25,9 +25,9 @@
           variables: {
             item_id
           },
-          update: (store, { data: { removeFromCart: {cartItem } } }) => {
+          update: (store, { data: { removeFromCart: {cartItems } } }) => {
             const data = store.readQuery({ query: CART_ITEMS_QUERY })
-            data.cartItems.splice(data.cartItems.findIndex(obj => obj.item.id == cartItem.item.id), 1)
+            data.cartItems = cartItems
             store.writeQuery({ query: CART_ITEMS_QUERY, data })
           }
         })

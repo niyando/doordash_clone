@@ -3,7 +3,7 @@ class Mutations::AddToCart < Mutations::BaseMutation
 
   argument :item_id, Int, required: true
 
-  field :cart_item, Types::CartItemType, null: true
+  field :cart_items, [Types::CartItemType], null: true
   field :errors, [String], null: false
 
   def resolve(args)
@@ -20,9 +20,9 @@ class Mutations::AddToCart < Mutations::BaseMutation
     end
 
     if item_added
-      {cart_item: cart_item, errors: []}
+      {cart_items: cart.cart_items, errors: []}
     else
-      {cart_item: nil, errors: cart_item.errors.full_messages }
+      {cart_items: nil, errors: cart_item.errors.full_messages }
     end
   end
 end

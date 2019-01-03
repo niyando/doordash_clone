@@ -3,7 +3,7 @@ class Mutations::RemoveFromCart < Mutations::BaseMutation
 
   argument :item_id, Int, required: true
 
-  field :cart_item, Types::CartItemType, null: true
+  field :cart_items, [Types::CartItemType], null: true
   field :errors, [String], null: false
 
   def resolve(args)
@@ -12,7 +12,7 @@ class Mutations::RemoveFromCart < Mutations::BaseMutation
     item = Item.find(args[:item_id])
     cart_item = cart.cart_items.where(item: item).first
     deleted = cart_item.destroy if cart_item.present?
-    {cart_item: cart_item, errors: []}
+    {cart_items: cart.cart_items, errors: []}
   end
 
 end
