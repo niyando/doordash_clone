@@ -67,3 +67,19 @@ export const ADD_TO_CART_MUTATION = gql`
     }
   }
 `
+
+export const REMOVE_FROM_CART_MUTATION = gql`
+  mutation RemoveFromCart($item_id: Int!) {
+    removeFromCart(itemId: $item_id){
+      cartItems{
+        item{
+          id
+          name
+          amount
+        }
+        quantity
+      }
+      errors
+    }
+  }
+`

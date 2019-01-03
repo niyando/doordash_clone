@@ -6,13 +6,27 @@
     </div>
     <div class="has-text-grey-light">{{cart_item.item.abbrDescription}}</div>
     <div><b>Quantity:</b>&nbsp;{{cart_item.quantity}}</div>
+    <a href @click.prevent="remove(cart_item.item.id)">Remove</a>
   </div>
 </template>
 
 <script>
+  import { REMOVE_FROM_CART_MUTATION } from '../constants/graphql'
+
   export default {
     name: 'CartItem',
-    props: ['cart_item']
+    props: ['cart_item'],
+    methods: {
+      remove(id){
+        const item_id = parseInt(id) 
+        this.$apollo.mutate({
+          mutation: REMOVE_FROM_CART_MUTATION,
+          variables: {
+            item_id
+          }
+        }).then(function(){alert('item removed')})
+      }
+    }
   }
 </script>
 

@@ -23,7 +23,7 @@
           variables: {
             item_id
           }
-        }).then(function(){alert('item')})
+        }).then(function(){alert('item added')})
       }
     }
   }
