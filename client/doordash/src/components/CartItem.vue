@@ -12,6 +12,7 @@
 
 <script>
   import { REMOVE_FROM_CART_MUTATION } from '../constants/graphql'
+  import { CART_ITEMS_QUERY } from '../constants/graphql'
 
   export default {
     name: 'CartItem',
@@ -23,8 +24,13 @@
           mutation: REMOVE_FROM_CART_MUTATION,
           variables: {
             item_id
+          },
+          update: (store, { data: { removeFromCart: {cartItem } } }) => {
+            const data = store.readQuery({ query: CART_ITEMS_QUERY })
+            data.cartItems.splice(data.cartItems.findIndex(obj => obj.item.id == cartItem.item.id), 1)
+            store.writeQuery({ query: CART_ITEMS_QUERY, data })
           }
-        }).then(function(){alert('item removed')})
+        })
       }
     }
   }
