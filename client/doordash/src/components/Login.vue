@@ -60,6 +60,7 @@
                 const id = result.data.authUser.user.id
                 const token = result.data.authUser.user.authToken
                 this.saveUserData(id, token)
+                this.$apollo.provider.defaultClient.resetStore()
                 this.$router.push({name: 'items'})
               }else{
                 alert(result.data.authUser.errors[0])

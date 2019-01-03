@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <h2 class="is-size-5 "> Cart Summary</h2>
+    <h2 class="is-size-4 "> Cart Summary</h2>
     <h4 v-if="loading">Loading...</h4>
     <p>{{totalItems}} items added to your cart.</p>
     <br>
