@@ -1,10 +1,12 @@
 <template>
-  <div class="items">
+  <div class="items card">
     <div class="columns">
-      <div class="column is-three-quarters"><b>{{item.name}}</b></div>
-      <div class="column"><b>${{item.amount}}</b></div>
+      <div class="column is-four-fifths"><b>{{item.name}}</b></div>
+      <div class="column">
+        <span style="float:right;"><b>${{item.amount}}</b> </span>
+      </div>
     </div>
-    <div class="has-text-grey-light">{{item.abbrDescription}}</div>
+    <div class="has-text-grey-light">{{item.description}}</div>
     <button @click="addToCart(item.id)" class="button is-primary add-to-cart">Add to Cart</button>
   </div>
 </template>
@@ -46,9 +48,9 @@
 
 <style scoped>
   .items{
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 20px;
-    max-width: 400px;
+    max-width: 500px;
   }
   .add-to-cart{
     margin-top: 10px;
