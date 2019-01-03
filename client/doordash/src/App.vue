@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <app-header></app-header>
-    <router-view/>
+    
+    <router-view class="" />
+    <router-view class="cart-container" name="cart"></router-view>
+    
   </div>
 </template>
 
@@ -21,5 +24,15 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.cart-container{
+  position: fixed;
+  width: 350px;
+  right: 0;
+  top: 0px;
+  background: lightgoldenrodyellow;
+  height: 100%;
+  padding: 15px;
+  padding-top: 60px;
 }
 </style>

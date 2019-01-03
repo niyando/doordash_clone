@@ -4,6 +4,8 @@ import Item from '@/components/Item'
 import ItemList from '@/components/ItemList'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Cart from '@/components/Cart'
+import CartItem from '@/components/CartItem'
 
 import { APP_AUTH_TOKEN } from '../constants/settings'
 
@@ -14,7 +16,10 @@ let router =  new Router({
     {
       path: '/',
       name: 'items',
-      component: ItemList
+      components: {
+        default: ItemList,
+        'cart': Cart
+      }
     },
     {
       path: '/login',

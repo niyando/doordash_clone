@@ -37,3 +37,17 @@ export const REGISTER_MUTATION = gql`
     }
   }
 `
+
+export const CART_ITEMS_QUERY = gql`
+  query CartItemsQuery {
+    cartItems{
+      id
+      item{
+        id
+        name
+        amount
+      }
+      quantity
+    }
+  }
+`
