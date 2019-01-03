@@ -7,12 +7,12 @@ class Mutations::RemoveFromCart < Mutations::BaseMutation
   field :errors, [String], null: false
 
   def resolve(args)
-    user = context[:current_user] || User.first
+    user = context[:current_user]
     cart = user.cart || user.create_cart
     item = Item.find(args[:item_id])
     cart_item = cart.cart_items.where(item: item).first
     deleted = cart_item.destroy if cart_item.present?
     {cart_items: cart.cart_items, errors: []}
   end
-  
+
 end

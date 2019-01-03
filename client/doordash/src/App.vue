@@ -27,12 +27,12 @@ export default {
 }
 .cart-container{
   position: fixed;
-  width: 350px;
+  width: 400px;
   right: 0;
   top: 0px;
   background: lightgoldenrodyellow;
   height: 100%;
-  padding: 15px;
+  padding: 20px;
   padding-top: 60px;
 }
 </style>

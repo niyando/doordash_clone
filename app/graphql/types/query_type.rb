@@ -32,7 +32,7 @@ module Types
       "gets all item in the cart of logged in user"
     end
     def cart_items
-      user = context[:current_user] || User.first
+      user = context[:current_user]
       cart_items = []
       if user
         cart = user.cart || user.create_cart

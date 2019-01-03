@@ -18,7 +18,7 @@
 
 <style scoped>
   .cart-items{
-    padding: 10px;
+    padding: 10px 0px;
     margin-bottom: 15px;
     border-bottom: 1px solid #d2d2d2;
   }

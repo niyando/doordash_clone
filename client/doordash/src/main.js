@@ -1,4 +1,5 @@
 import { ApolloClient } from 'apollo-client'
+import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
@@ -11,7 +12,7 @@ import router from './router'
 
 import 'bulma/css/bulma.css'
 
-import { APP_USER_ID } from './constants/settings'
+import { APP_USER_ID, APP_AUTH_TOKEN } from './constants/settings'
 let userId = localStorage.getItem(APP_USER_ID)
 
 Vue.config.productionTip = false
@@ -21,8 +22,21 @@ const httpLink = new HttpLink({
   uri: 'http://127.0.0.1:3000/graphql'
 })
 
+const authMiddleware = new ApolloLink((operation, forward) => {
+  // add the authorization to the headers
+  const token = localStorage.getItem(APP_AUTH_TOKEN)
+  operation.setContext({
+    headers: {
+      authorization: token ? `Token token=${token}` : null
+    }
+  })
+  return forward(operation)
+})
+
+const link = authMiddleware.concat(httpLink)
+
 const apolloClient = new ApolloClient({
-  link: httpLink,
+  link: link,
   cache: new InMemoryCache(),
   connectToDevTools: true
 })

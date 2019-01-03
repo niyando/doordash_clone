@@ -41,7 +41,9 @@
         localStorage.removeItem(APP_USER_ID)
         localStorage.removeItem(APP_AUTH_TOKEN)
         this.$root.$data.userId = localStorage.getItem(APP_USER_ID)
+        this.$apollo.provider.defaultClient.resetStore()
         this.$router.push({name: 'login'})
+        
       }
     }
   }

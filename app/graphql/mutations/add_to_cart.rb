@@ -7,7 +7,7 @@ class Mutations::AddToCart < Mutations::BaseMutation
   field :errors, [String], null: false
 
   def resolve(args)
-    user = context[:current_user] || User.first
+    user = context[:current_user]
     cart = user.cart || user.create_cart
     item = Item.find(args[:item_id])
     cart_item = cart.cart_items.where(item: item).first
