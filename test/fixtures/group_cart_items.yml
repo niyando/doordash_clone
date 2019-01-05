@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_cart: one
+  item: one
+  user: one
+
+two:
+  group_cart: two
+  item: two
+  user: two

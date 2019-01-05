@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_074024) do
+ActiveRecord::Schema.define(version: 2019_01_05_110003) do
 
   create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "cart_id"
@@ -27,6 +27,26 @@ ActiveRecord::Schema.define(version: 2018_12_31_074024) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "group_cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "group_cart_id"
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.integer "quantity", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_cart_id"], name: "index_group_cart_items_on_group_cart_id"
+    t.index ["item_id"], name: "index_group_cart_items_on_item_id"
+    t.index ["user_id"], name: "index_group_cart_items_on_user_id"
+  end
+
+  create_table "group_carts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_group_carts_on_user_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -51,4 +71,8 @@ ActiveRecord::Schema.define(version: 2018_12_31_074024) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "items"
   add_foreign_key "carts", "users"
+  add_foreign_key "group_cart_items", "group_carts"
+  add_foreign_key "group_cart_items", "items"
+  add_foreign_key "group_cart_items", "users"
+  add_foreign_key "group_carts", "users"
 end
