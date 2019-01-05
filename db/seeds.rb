@@ -26,3 +26,23 @@ end
   user_cart.cart_items.create(item: Item.all.sample, quantity: 1)
 end
 
+user_group_cart = user.create_group_cart
+
+user_group_cart.group_cart_items.create! do |gc|
+  gc.user = user
+  gc.item = Item.all.sample
+  gc.quantity = 1
+end
+
+user_group_cart.group_cart_items.create do |gc|
+  gc.user_id = 12
+  gc.item = Item.all.sample
+  gc.quantity = 1
+end
+
+user_group_cart.group_cart_items.create do |gc|
+  gc.user_id = 13
+  gc.item = Item.all.sample
+  gc.quantity = 1
+end
+
