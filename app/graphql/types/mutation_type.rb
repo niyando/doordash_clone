@@ -4,5 +4,8 @@ module Types
     field :auth_user, mutation: Mutations::AuthenticateUser
     field :add_to_cart, mutation: Mutations::AddToCart
     field :remove_from_cart, mutation: Mutations::RemoveFromCart
+
+    field :create_group_cart, mutation: Mutations::CreateGroupCart
+    field :delete_group_cart, mutation: Mutations::DeleteGroupCart
   end
 end

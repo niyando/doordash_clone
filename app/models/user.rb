@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :cart
+  has_one :group_cart
 
   has_secure_password
   has_secure_token :auth_token
