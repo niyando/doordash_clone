@@ -41,16 +41,21 @@ module Types
       cart_items
     end
 
-    field :group_cart_items, [GroupCartItemType], null: true do
-      "gets all item in the cart of logged in user"
+    field :group_cart, GroupCartType, null: true do
+      "gets group cart for logged in user"
     end
-    def group_cart_items
+    def group_cart
       user = context[:current_user] || User.first
-      group_cart_items = []
-      if user
-        group_cart = user.group_cart
-        group_cart_items = group_cart.group_cart_items
-      end
+      group_cart = user.group_cart
+    end
+
+    field :group_cart_items, [GroupCartItemType], null: true do
+      "gets all item in the cart of specified token"
+      argument :token, String, required: true
+    end
+    def group_cart_items(args)
+      group_cart = GroupCart.find_by_token args[:token]
+      group_cart_items = group_cart.group_cart_items
       group_cart_items
     end
     
