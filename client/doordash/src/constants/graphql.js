@@ -85,3 +85,14 @@ export const REMOVE_FROM_CART_MUTATION = gql`
     }
   }
 `
+
+export const CREATE_GROUP_CART_MUTATION = gql`
+  mutation CreateGroupCart {
+    createGroupCart{
+      groupCart{
+        token
+      }
+      errors
+    }
+  }
+`

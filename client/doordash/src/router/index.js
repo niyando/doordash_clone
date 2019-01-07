@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Cart from '@/components/Cart'
 import CartItem from '@/components/CartItem'
+import GroupCart from '@/components/GroupCart'
 
 import { APP_AUTH_TOKEN } from '../constants/settings'
 
@@ -36,7 +37,18 @@ let router =  new Router({
       meta: {
         guestOnly: true
       }
-    }
+    },
+    {
+      path: '/group/:token',
+      name: 'group_cart',
+      components: {
+        default: ItemList,
+        'group_cart': GroupCart
+      },
+      meta: {
+        requiresAuth: true
+      }
+    },
   ],
   mode: 'history'
 })

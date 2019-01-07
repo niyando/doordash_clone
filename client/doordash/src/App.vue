@@ -4,6 +4,7 @@
     
     <router-view class="" />
     <router-view class="cart-container" name="cart"></router-view>
+    <router-view class="cart-container" name="group_cart"></router-view>
     
   </div>
 </template>

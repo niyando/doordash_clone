@@ -4,8 +4,8 @@ class Mutations::CreateGroupCart < Mutations::BaseMutation
   field :group_cart, Types::GroupCartType, null: true
   field :errors, [String], null: false
 
-  def resolve(args)
-    user = context[:current_user] || User.first
+  def resolve
+    user = context[:current_user]
     group_cart = user.group_cart || user.create_group_cart
     if group_cart
       {group_cart: group_cart, errors: []}

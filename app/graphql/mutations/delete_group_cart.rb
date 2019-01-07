@@ -5,7 +5,7 @@ class Mutations::DeleteGroupCart < Mutations::BaseMutation
   field :errors, [String], null: false
 
   def resolve(args)
-    user = context[:current_user] || User.first
+    user = context[:current_user]
     user.group_cart.destroy
     {group_cart: user.group_cart, errors: []}
   end
