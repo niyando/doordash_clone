@@ -4,10 +4,11 @@
     <p class="is-size-6">
       Share the following URL to allow other people to add to your cart
     </p>
-    <div class="is-size-6" style="margin: 2px; padding: 5px; background: #fafafa; overflow-wrap:break-word;">
+    
+    <div class="is-size-6" style="margin: 2px 0px; padding: 5px; background: #fafafa; overflow-wrap:break-word;">
       <a class="has-text-danger" vi-bind:href="'http://localhost:8080/group/'+groupToken">http://localhost:8080/group/{{groupToken}}</a>
     </div>
-    
+    <br>
     <user-items
       v-for="ui in userItems"
       :key="ui.id"
@@ -19,7 +20,7 @@
 
 <script>
   import UserItems from './UserItems'
-  import { GROUP_CART_ITEMS_QUERY } from '../constants/graphql'
+  import { GROUP_CART_QUERY, GROUP_CART_ITEMS_QUERY } from '../constants/graphql'
   export default {
     name: 'GroupCart',
     components: {
@@ -27,11 +28,25 @@
     },
     data () {
       return {
+        groupCart: {},
         groupCartItems: [],
         groupToken: this.$route.params.token
       }
     },
     apollo: {
+      groupCart: {
+        query: GROUP_CART_QUERY,
+        variables() {
+          return{
+              token: this.groupToken
+          }
+        },
+        result: function(result){
+          if(!result.data.groupCart || !data.result.data.groupCart.token){
+            this.$router.push('/')
+          }
+        }
+      },
       groupCartItems: {
         query: GROUP_CART_ITEMS_QUERY,
         variables() {

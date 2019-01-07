@@ -42,11 +42,11 @@ module Types
     end
 
     field :group_cart, GroupCartType, null: true do
-      "gets group cart for logged in user"
+      "gets group cart for specified token"
+      argument :token, String, required: true
     end
-    def group_cart
-      user = context[:current_user] || User.first
-      group_cart = user.group_cart
+    def group_cart(args)
+      group_cart = GroupCart.find_by_token args[:token]
     end
 
     field :group_cart_items, [GroupCartItemType], null: true do
