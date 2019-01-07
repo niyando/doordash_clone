@@ -7,5 +7,7 @@ module Types
 
     field :create_group_cart, mutation: Mutations::CreateGroupCart
     field :delete_group_cart, mutation: Mutations::DeleteGroupCart
+    field :add_to_group_cart, mutation: Mutations::AddToGroupCart
+    field :remove_from_group_cart, mutation: Mutations::RemoveFromGroupCart
   end
 end
