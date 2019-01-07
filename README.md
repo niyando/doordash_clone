@@ -30,8 +30,8 @@ A simple ecommerce app with server based on Ruby on Rails 5 and client written i
 
 ## demo accounts to login
 
-niyando@gmail.com | password123
-niyando+2@gmail.com | password123
-niyando+3@gmail.com | password123
+niyando@gmail.com   | password123  
+niyando+2@gmail.com | password123  
+niyando+3@gmail.com | password123   
 
 
