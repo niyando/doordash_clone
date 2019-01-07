@@ -76,6 +76,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     erubi (1.8.0)
     execjs (2.7.0)
     faker (1.9.1)
@@ -212,6 +213,7 @@ DEPENDENCIES
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  database_cleaner
   faker
   graphiql-rails
   graphql

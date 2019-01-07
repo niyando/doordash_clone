@@ -1,3 +1,6 @@
+require 'database_cleaner'
+DatabaseCleaner.strategy = :truncation, {:except => %w[schema_migrations ar_internal_metadata]}
+DatabaseCleaner.clean
 
 user = User.create! do |u|
   u.name = Faker::Name.name
