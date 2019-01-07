@@ -14,7 +14,7 @@
 
 <script>
   import { ADD_TO_CART_MUTATION, ADD_TO_GROUP_CART_MUTATION } from '../constants/graphql'
-  import { CART_ITEMS_QUERY } from '../constants/graphql'
+  import { CART_ITEMS_QUERY, GROUP_CART_ITEMS_QUERY } from '../constants/graphql'
 
   export default {
     name: 'Item',
@@ -60,6 +60,11 @@
           variables: {
             token,
             item_id
+          },
+          update: (store, { data: { addToGroupCart } }) => {
+            const data = store.readQuery({ query: GROUP_CART_ITEMS_QUERY, variables: {token: this.groupToken} })
+            data.groupCartItems = addToGroupCart.groupCartItems
+            store.writeQuery({ query: GROUP_CART_ITEMS_QUERY, variables: {token: this.groupToken}, data })
           }
         })
       }

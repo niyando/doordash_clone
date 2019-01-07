@@ -1,12 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.create do |u|
+user = User.create! do |u|
   u.name = Faker::Name.name
   u.email = "niyando@gmail.com"
   u.password = "password123"
@@ -28,21 +21,22 @@ end
 
 user_group_cart = user.create_group_cart
 
-user_group_cart.group_cart_items.create! do |gc|
-  gc.user = user
-  gc.item = Item.all.sample
-  gc.quantity = 1
+user_2 = User.create do |u|
+  u.name = Faker::Name.name
+  u.email = "niyando+2@gmail.com"
+  u.password = "password123"
 end
 
-user_group_cart.group_cart_items.create do |gc|
-  gc.user_id = 12
-  gc.item = Item.all.sample
-  gc.quantity = 1
+user_3 = User.create do |u|
+  u.name = Faker::Name.name
+  u.email = "niyando+3@gmail.com"
+  u.password = "password123"
 end
 
-user_group_cart.group_cart_items.create do |gc|
-  gc.user_id = 13
-  gc.item = Item.all.sample
-  gc.quantity = 1
+8.times do |i|
+  user_group_cart.group_cart_items.create! do |gc|
+    gc.user = [user, user_2, user_3].sample
+    gc.item = Item.all.sample
+    gc.quantity = 1
+  end
 end
-

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import { REMOVE_FROM_GROUP_CART_MUTATION } from '../constants/graphql'
+  import { REMOVE_FROM_GROUP_CART_MUTATION, GROUP_CART_ITEMS_QUERY } from '../constants/graphql'
 
   export default {
     name: 'UserItem',
@@ -34,6 +34,11 @@
           variables: {
             token,
             item_id
+          },
+          update: (store, { data: { removeFromGroupCart } }) => {
+            const data = store.readQuery({ query: GROUP_CART_ITEMS_QUERY, variables: {token: this.groupToken} })
+            data.groupCartItems = removeFromGroupCart.groupCartItems
+            store.writeQuery({ query: GROUP_CART_ITEMS_QUERY, variables: {token: this.groupToken}, data })
           }
         })
       }

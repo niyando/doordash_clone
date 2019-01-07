@@ -33,6 +33,7 @@ export default {
   top: 0px;
   background: lightgoldenrodyellow;
   height: 100%;
+  overflow-y: scroll;
   padding: 20px;
   padding-top: 60px;
 }
