@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import { ADD_TO_CART_MUTATION } from '../constants/graphql'
+  import { ADD_TO_CART_MUTATION, ADD_TO_GROUP_CART_MUTATION } from '../constants/graphql'
   import { CART_ITEMS_QUERY } from '../constants/graphql'
 
   export default {
@@ -49,7 +49,19 @@
         })
       },
       addToGroupCart(id){
-        alert("Add item to group cart");
+        if(!this.userId){
+          this.$router.push({name: 'login'})
+          return false;
+        }
+        const item_id = parseInt(id) 
+        const token = this.groupToken
+        this.$apollo.mutate({
+          mutation: ADD_TO_GROUP_CART_MUTATION,
+          variables: {
+            token,
+            item_id
+          }
+        })
       }
     }
   }

@@ -12,9 +12,9 @@ class Mutations::RemoveFromGroupCart < Mutations::BaseMutation
     group_cart = GroupCart.find_by_token(args[:token])
     item = Item.find(args[:item_id])
 
-    cart_item = group_cart.cart_items.where(item: item, user: user).first
+    cart_item = group_cart.group_cart_items.where(item: item, user: user).first
     deleted = cart_item.destroy if cart_item.present?
-    {group_cart_items: group_cart.cart_items, errors: []}
+    {group_cart_items: group_cart.group_cart_items, errors: []}
   end
 
 end

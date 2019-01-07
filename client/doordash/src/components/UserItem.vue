@@ -10,19 +10,32 @@
 </template>
 
 <script>
-
+  import { REMOVE_FROM_GROUP_CART_MUTATION } from '../constants/graphql'
 
   export default {
     name: 'UserItem',
     props: ['user_item', 'user_id'],
+    data(){
+      return {
+        groupToken: this.$route.params.token
+      }
+    },
     computed: {
       userId: function(){
         return this.$root.$data.userId
       }
     },
     methods: {
-      remove: function(){
-        alert('remove item from group cart')
+      remove(id){
+        const item_id = parseInt(id) 
+        const token = this.groupToken
+        this.$apollo.mutate({
+          mutation: REMOVE_FROM_GROUP_CART_MUTATION,
+          variables: {
+            token,
+            item_id
+          }
+        })
       }
     }
   }

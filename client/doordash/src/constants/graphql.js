@@ -123,3 +123,45 @@ export const GROUP_CART_ITEMS_QUERY = gql`
     }
   }
 `
+
+export const ADD_TO_GROUP_CART_MUTATION = gql`
+  mutation AddToGroupCart($token: String!, $item_id: Int!) {
+    addToGroupCart(token: $token, itemId: $item_id){
+      groupCartItems{
+        item{
+          id
+          name
+          amount
+          abbrDescription
+        }
+        user{
+          id
+          name
+        }
+        quantity
+      }
+      errors
+    }
+  }
+`
+
+export const REMOVE_FROM_GROUP_CART_MUTATION = gql`
+  mutation RemoveFromGroupCart($token: String!, $item_id: Int!) {
+    removeFromGroupCart(token: $token, itemId: $item_id){
+      groupCartItems{
+        item{
+          id
+          name
+          amount
+          abbrDescription
+        }
+        user{
+          id
+          name
+        }
+        quantity
+      }
+      errors
+    }
+  }
+`
