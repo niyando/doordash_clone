@@ -165,3 +165,14 @@ export const REMOVE_FROM_GROUP_CART_MUTATION = gql`
     }
   }
 `
+
+export const DELETE_GROUP_CART_MUTATION = gql`
+  mutation DeleteGroupCart {
+    deleteGroupCart{
+      groupCart{
+        token
+      }
+      errors
+    }
+  }
+`

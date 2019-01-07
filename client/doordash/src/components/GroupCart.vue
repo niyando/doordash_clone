@@ -8,6 +8,9 @@
     <div class="is-size-6" style="margin: 2px 0px; padding: 5px; background: #fafafa; overflow-wrap:break-word;">
       <a class="has-text-danger" vi-bind:href="'http://localhost:8080/group/'+groupToken">http://localhost:8080/group/{{groupToken}}</a>
     </div>
+    <div>
+      <button v-if="userId == groupCart.userId" class="button is-danger is-small" @click="deleteGroupCart()">Cancel Group Cart</button>
+    </div>
     <br>
     <user-items
       v-for="ui in userItems"
@@ -20,7 +23,7 @@
 
 <script>
   import UserItems from './UserItems'
-  import { GROUP_CART_QUERY, GROUP_CART_ITEMS_QUERY } from '../constants/graphql'
+  import { GROUP_CART_QUERY, GROUP_CART_ITEMS_QUERY, DELETE_GROUP_CART_MUTATION } from '../constants/graphql'
   export default {
     name: 'GroupCart',
     components: {
@@ -56,7 +59,21 @@
         }
       }
     },
+    methods: {
+      deleteGroupCart: function(){
+        if(confirm("Are you sure you wish to delete this group cart?")){
+          this.$apollo.mutate({
+            mutation: DELETE_GROUP_CART_MUTATION,
+          }).then((result) => {
+            this.$router.push('/')
+          })
+        }
+      }
+    },
     computed: {
+      userId: function(){
+        return this.$root.$data.userId
+      },
       userItems: function(){
         let users = []
         this.groupCartItems.forEach((gc_item) => {
