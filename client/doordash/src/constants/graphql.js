@@ -96,3 +96,21 @@ export const CREATE_GROUP_CART_MUTATION = gql`
     }
   }
 `
+
+export const GROUP_CART_ITEMS_QUERY = gql`
+  query GroupCartItemsQuery($token: String!) {
+    groupCartItems(token: $token){
+      item{
+        id
+        name
+        amount
+        abbrDescription
+      }
+      user{
+        id
+        name
+      }
+      quantity
+    }
+  }
+`
