@@ -28,4 +28,10 @@ A simple ecommerce app with server based on Ruby on Rails 5 and client written i
 1. Guest user - so a user can add to cart/group-cart without login.
 2. Graphl subscription to update group cart items using web sockets
 
+## demo accounts to login
+
+niyando@gmail.com | password123
+niyando+2@gmail.com | password123
+niyando+3@gmail.com | password123
+
 
