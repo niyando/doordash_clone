@@ -7,7 +7,8 @@
       </div>
     </div>
     <div class="has-text-grey-light">{{item.description}}</div>
-    <button @click="addToCart(item.id)" class="button is-primary add-to-cart">Add to Cart</button>
+    <button v-if="!groupToken" @click="addToCart(item.id)" class="button is-primary add-to-cart">Add to Cart</button>
+    <button v-else @click="addToGroupCart(item.id)" class="button is-primary add-to-cart">Add to Cart</button>
   </div>
 </template>
 
@@ -18,6 +19,11 @@
   export default {
     name: 'Item',
     props: ['item'],
+    data(){
+      return {
+        groupToken: this.$route.params.token
+      }
+    },
     computed: {
       userId () {
         return this.$root.$data.userId
@@ -41,6 +47,9 @@
             store.writeQuery({ query: CART_ITEMS_QUERY, data })
           }
         })
+      },
+      addToGroupCart(id){
+        alert("Add item to group cart");
       }
     }
   }

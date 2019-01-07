@@ -9,7 +9,8 @@
             <user-item
               v-for="ui in user_items.items"
               :key="ui.id"
-              :user_item="ui">
+              :user_item="ui"
+              :user_id="user_items.id">
             </user-item>
       </div>
     </div>
