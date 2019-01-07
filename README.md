@@ -20,10 +20,12 @@ A simple ecommerce app with server based on Ruby on Rails 5 and client written i
 1. Authentication (Login and Register)
 2. Browse food items
 3. Add/Remove items to Cart.
+4. Ability to create a group cart and share with other people
+5. Abilility to add/remove items to shared carts
 
 ## Yet to do
 
-1. Group cart: shared across multiple users.
-2. Guest user - so a user can add to cart without login.
+1. Guest user - so a user can add to cart/group-cart without login.
+2. Graphl subscription to update group cart items using web sockets
 
 
